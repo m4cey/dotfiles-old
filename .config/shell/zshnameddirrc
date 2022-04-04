@@ -1,0 +1,12 @@
+hash -d cac=/home/mace/.cache 
+hash -d cf=/home/mace/.config 
+hash -d D=/home/mace/Downloads 
+hash -d d=/home/mace/docs 
+hash -d dt=/home/mace/.local/share 
+hash -d h=/home/mace 
+hash -d m=/home/mace/media/music 
+hash -d mn=/mnt 
+hash -d pp=/home/mace/media/images 
+hash -d sc=/home/mace/.local/bin 
+hash -d src=/home/mace/.local/src 
+hash -d vv=/home/mace/media/videos 

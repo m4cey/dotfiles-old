@@ -1,0 +1,21 @@
+#!/bin/bash
+
+bg="$HOME/media/wallpapers/"
+theme="$HOME/.config/wal/colorschemes/dark/base16-nord.json"
+
+if [ -z "$1" ]; then
+	bg="$HOME/.local/share/bg.png"
+else
+	bg="$1"
+fi
+wal -c
+wal -n --iterative --theme "$theme" -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
+feh --force-aliasing --bg-fill --no-fehbg "$bg"
+cp -fs "$bg" $HOME/.local/share/bg.png
+# wal -n --saturate 0.3 -i "$bg" -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
+
+# name=$(basename "$bg")
+# if [[ ! -e "$HOME/media/wallpapers-blur/$name" ]] && [[ $(cat /tmp/shader) == "bokeh" ]]; then
+# 	magick "$bg" -blur 0x24 "$HOME/media/wallpapers-blur/$name"
+# fi
+# ln -fs "$HOME/media/wallpapers-blur/$name" $HOME/.local/share/bg-blur.png

@@ -1,0 +1,35 @@
+set font "terminus 10"
+set sandbox none
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map r reload
+map R rotate
+map K zoom in
+map J zoom out
+map i recolor
+map p print
+
+set default-bg                     "{background}"
+set default-fg                     "{foreground}"
+set statusbar-bg                   "{color5}"
+set statusbar-fg                   "{background}"
+set inputbar-bg                    "{color5}"
+set inputbar-fg                    "{background}"
+set notification-bg                "{background}"
+set notification-fg                "{foreground}"
+set notification-error-bg          "{background}"
+set notification-error-fg          "{foreground}"
+set notification-warning-bg        "{background}"
+set notification-warning-fg        "{foreground}"
+set highlight-color                "{color3}"
+set highlight-active-color         "{color4}"
+set completion-bg                  "{color3}"
+set completion-fg                  "{background}"
+set completion-highlight-bg        "{color3}"
+set completion-highlight-fg        "{foreground}"
+set recolor-lightcolor             "{background}"
+set recolor-darkcolor              "{foreground}"

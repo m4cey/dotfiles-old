@@ -1,0 +1,35 @@
+#define myFont JetBrainsMono Nerd Font
+
+g! Transparency (0-1):
+*.alpha: 1
+
+*.font: myFont:size=10
+
+st.font: 		myFont:size=10:weight=90
+st.fontalt0: 		Noto Color Emoji:pixelsize=13
+st.alpha: 		1
+
+! special
+*.background: {color0}
+*.foreground: {color9}
+*.cursorColor: {color6}
+*.color0: {color0}
+*.color1: {color1}
+*.color2: {color2}
+*.color3: {color3}
+*.color4: {color4}
+*.color5: {color5}
+*.color6: {color6}
+*.color7: {color7}
+*.color8: {color8}
+*.color9: {color9}
+*.color10: {color10}
+*.color11: {color11}
+*.color12: {color12}
+*.color13: {color13}
+*.color14: {color14}
+*.color15: {color15}
+
+dmenu.color0: {color0}
+dmenu.color4: {color6}
+dmenu.color7: {color9}

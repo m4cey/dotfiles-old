@@ -1,0 +1,138 @@
+#!/bin/sh
+
+# Usage:
+# `$0`: Ask for recording type via dmenu
+# `$0 screencast`: Record both audio and screen
+# `$0 video`: Record only screen
+# `$0 audio`: Record only audio
+# `$0 kill`: Kill existing recording
+#
+# If there is already a running instance, user will be prompted to end it.
+dest="$HOME/media/recorded"
+rec="^C11^ rec "
+
+updateicon() { \
+	#if [[ $1 !== "" ]]; then echo "$1" > /tmp/recordingicon; fi
+	echo "$1" > /tmp/recordingicon
+	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+	}
+
+killrecording() {
+	recpid="$(cat /tmp/recordingpid)"
+	# kill with SIGTERM, allowing finishing touches.
+	kill -15 "$recpid"
+	rm -f /tmp/recordingpid
+	updateicon ""
+	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+	# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
+	sleep 3
+	kill -9 "$recpid"
+	exit
+	}
+
+screencast() { \
+	ffmpeg -y \
+	-f x11grab \
+	-framerate 24 \
+	-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
+	-i "$DISPLAY" \
+	-f pulse \
+	-i alsa_output.pci-0000_00_1b.0.analog-stereo.monitor \
+	-r 30 \
+ 	-c:v libx264 -crf 18 -preset ultrafast -c:a aac \
+	"$dest/screencast-$(date '+%y%m%d-%H%M%S').mp4" &
+	echo $! > /tmp/recordingpid
+	updateicon "$rec"
+  }
+
+video() { ffmpeg \
+	-f x11grab \
+	-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
+	-i "$DISPLAY" \
+ 	-c:v libx264 -qp 0 -r 30 \
+	"$dest/video-$(date '+%y%m%d-%H%M%S').mkv" &
+	echo $! > /tmp/recordingpid
+	updateicon "$rec"
+	}
+
+webcamhidef() { ffmpeg \
+	-f v4l2 \
+	-i /dev/video0 \
+	-video_size 1920x1080 \
+	"$dest/webcam-$(date '+%y%m%d-%H%M%S').mkv" &
+	echo $! > /tmp/recordingpid
+	updateicon "$rec"
+	}
+
+webcam() { ffmpeg \
+	-f v4l2 \
+	-i /dev/video0 \
+	-video_size 640x480 \
+	"$dest/webcam-$(date '+%y%m%d-%H%M%S').mkv" &
+	echo $! > /tmp/recordingpid
+	updateicon "$rec"
+	}
+
+
+audio() { \
+	ffmpeg \
+	-f pulse -i default \
+	-c:a flac \
+	"$dest/audio-$(date '+%y%m%d-%H%M%S').flac" &
+	echo $! > /tmp/recordingpid
+	updateicon "$rec"
+	}
+
+voice() { \
+	ffmpeg \
+	-f pulse -i alsa_input.pci-0000_00_1b.0.analog-stereo \
+	-ac 2 -acodec libmp3lame -ab 60k \
+	"$dest/audio-$(date '+%y%m%d-%H%M%S').mp3" &
+	echo $! > /tmp/recordingpid
+	updateicon "$rec"
+	}
+
+askrecording() { \
+	choice=$(printf "screencast\\nvideo\\nvoice\\nvideo selected\\naudio\\nwebcam\\nwebcam (hi-def)" | dmenu -l 7 -z 400 -i -p "Select recording style:")
+	case "$choice" in
+		screencast) screencast;;
+		audio) audio;;
+		voice) voice;;
+		video) video;;
+		*selected) videoselected;;
+		webcam) webcam;;
+		"webcam (hi-def)") webcamhidef;;
+	esac
+	}
+
+asktoend() { \
+	response=$(printf "Yes\\nNo" | dmenu -i -p "Recording still active. End recording?") &&
+	[ "$response" = "Yes" ] &&  killrecording
+	}
+
+videoselected()
+{
+	slop -f "%x %y %w %h" > /tmp/slop
+	read -r X Y W H < /tmp/slop
+	rm /tmp/slop
+
+	ffmpeg \
+	-f x11grab \
+	-framerate 60 \
+	-video_size "$W"x"$H" \
+	-i :0.0+"$X,$Y" \
+	-c:v libx264 -qp 0 -r 30 \
+	"$dest/box-$(date '+%y%m%d-%H%M-%S').mkv" &
+	echo $! > /tmp/recordingpid
+	updateicon "$rec"
+}
+
+case "$1" in
+	screencast) screencast;;
+	audio) audio;;
+	voice) voice;;
+	video) video;;
+	*selected) videoselected;;
+	kill) killrecording;;
+	*) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
+esac

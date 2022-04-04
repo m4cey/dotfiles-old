@@ -1,0 +1,60 @@
+#!/bin/bash
+
+w=25
+
+refresh() {
+	pkill -RTMIN+14 "${STATUSBAR:-dwmblocks}"
+}
+next() {
+	if [[ $(playerctl -a status 2> /dev/null | grep -v Stopped | wc -l) -lt 2 ]]; then
+		playerctld unshift
+	else
+		playerctld shift
+	fi
+	exit
+}
+
+case $BLOCK_BUTTON in
+	1) next ;;
+	3) playerctl play-pause ;;
+esac
+
+[[ ! -f /tmp/mprisi ]] && echo "1" > /tmp/mprisi
+
+player=$(playerctl -l 2> /dev/null | head -1)
+if [ -n "$player" ]; then
+	status=$(playerctl status 2>/dev/null)
+	case $status in
+		Playing) c=6;;
+		Paused) c=1;;
+		Stopped) next ;;
+		*) exit ;;
+	esac
+	metadata=$(playerctl metadata --format '{{markup_escape(artist)}}' 2> /dev/null)
+	if [[ -z "$metadata" ]]; then
+		metadata=$(playerctl metadata --format '{{markup_escape(title)}}' 2> /dev/null)
+	else
+		metadata+=$(playerctl metadata --format ' - {{markup_escape(title)}}' 2> /dev/null)
+	fi
+	[[ -z "$metadata" ]] && exit;
+	len=$(echo "$metadata" | wc -m)
+	if [ $w -ge $len ]; then
+		printf "^C$c^ $metadata"
+		exit
+	fi
+	i=$(cat /tmp/mprisi)
+	i=$(($i + 1))
+	j=$(($i + $w))
+	len2=$(($len + 3))
+	if [ $i -ge $len2 ]; then
+		i=1
+		j=$(($w + 1))
+	fi
+	if [ $j -ge $len ]; then
+		out=$(echo "$metadata * $metadata" | cut -c $i-$j)
+	else
+		out=$(echo "$metadata" | cut -c $i-$j)
+	fi
+	echo -n "^C$c^ $out ^t^"
+	echo "$i" > /tmp/mprisi
+fi

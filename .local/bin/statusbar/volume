@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+case $BLOCK_BUTTON in
+	4) pamixer --allow-boost -i 1 ;;
+	5) pamixer --allow-boost -d 1 ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+[[ $(pamixer --get-mute) = "true" ]] && echo "^B1^ 婢 ^t^" && exit
+
+vol="$(pamixer --get-volume)"
+
+if [ "$vol" -gt "98" ]; then
+	icon="^B1^墳"
+elif [ "$vol" -lt "30" ]; then
+	icon="奔"
+else
+	icon="墳"
+fi
+echo "^t^$icon $vol% ^t^"

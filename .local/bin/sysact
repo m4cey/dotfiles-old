@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# A dmenu wrapper script for system functions.
+
+cmds="\
+lock	slock
+leave dwm	pkill -TERM dwm
+renew dwm	pkill -HUP dwm
+sleep	sudo pm-suspend
+hibernate	sudo pm-hibernate
+reboot	sudo reboot
+poweroff	sudo poweroff"
+
+choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 3 -g 3)" || exit 1
+
+`echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`

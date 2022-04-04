@@ -1,0 +1,12 @@
+const vec3 theme[NB_COLORS] = vec3[NB_COLORS](
+	vec3({color1.rgb})/255.0,
+	vec3({color2.rgb})/255.0,
+	vec3({color3.rgb})/255.0,
+	vec3({color4.rgb})/255.0,
+	vec3({color5.rgb})/255.0,
+	vec3({color6.rgb})/255.0,
+	vec3({color9.rgb})/255.0,
+	vec3({color10.rgb})/255.0,
+	vec3({color11.rgb})/255.0,
+	vec3({color12.rgb})/255.0,
+);
