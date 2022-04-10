@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 alias add="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add --no-warn-embedded-repo"
-add "./.xinitrc"
+add "./.xsession"
 add "./.xprofile"
 add "./.zprofile"
 add "./.config/shell/*"
