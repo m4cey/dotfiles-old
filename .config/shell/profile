@@ -99,7 +99,7 @@ whichTTY=$(tty | sed -e "s:/dev/::")
 # fi
 if [[ $whichTTY == tty1 ]] ; then
    alias sudo="sudo -A"
-   exec startx
+   startx
 fi
 
 # Switch escape and caps if tty and no passwd required:

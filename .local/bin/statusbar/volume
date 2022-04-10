@@ -6,12 +6,12 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[[ $(pamixer --get-mute) = "true" ]] && echo "^B1^ 婢 ^t^" && exit
+[[ $(pamixer --get-mute) = "true" ]] && echo "^B6^^C0^ 婢 ^t^" && exit
 
 vol="$(pamixer --get-volume)"
 
 if [ "$vol" -gt "98" ]; then
-	icon="^B1^墳"
+	icon="^B6^^C0^ 墳"
 elif [ "$vol" -lt "30" ]; then
 	icon="奔"
 else

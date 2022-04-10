@@ -6,7 +6,7 @@
 
 dir="$HOME/media/screens/"
 
-case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -l 6 -i -p "Screenshot which area?")" in
+case "$(printf "a selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)\\na selected area\\ncurrent window\\nfull screen" | dmenu -l 6 -i -p "Screenshot which area?")" in
 	"a selected area") maim -us ${dir}pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
 	"current window") maim -ui "$(xdotool getactivewindow)" ${dir}pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
 	"full screen") maim -u ${dir}pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;

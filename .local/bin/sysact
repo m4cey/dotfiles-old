@@ -3,13 +3,13 @@
 # A dmenu wrapper script for system functions.
 
 cmds="\
-lock	slock
-leave dwm	pkill -TERM dwm
-renew dwm	pkill -HUP dwm
-sleep	sudo pm-suspend
-hibernate	sudo pm-hibernate
-reboot	sudo reboot
-poweroff	sudo poweroff"
+ lock	slock
+ﴚ leave dwm	pkill -TERM dwm
+ renew dwm	pkill -HUP dwm
+鈴 sleep	sudo pm-suspend
+⏾ hibernate	sudo pm-hibernate
+ reboot	sudo reboot
+⏻ poweroff	sudo poweroff"
 
 choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 3 -g 3)" || exit 1
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-w=25
+w=40
 
 refresh() {
 	pkill -RTMIN+14 "${STATUSBAR:-dwmblocks}"

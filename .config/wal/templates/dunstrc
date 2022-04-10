@@ -1,7 +1,7 @@
 [global]
     monitor = 0
     follow = keyboard
-    width = (0, 300)
+    width = 400
     # height = 200
     origin = top-center
     offset = 24x48
