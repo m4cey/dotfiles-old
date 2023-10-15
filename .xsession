@@ -1,5 +1,5 @@
 #!/bin/bash
 
 . $HOME/.xprofile
-xterm &
-exec dbus-run-session -- dwm
+# xterm &
+exec ssh-agent dbus-run-session dwm

@@ -10,8 +10,8 @@ st.fontalt0: 		Noto Color Emoji:pixelsize=13
 st.alpha: 		1
 
 ! special
-*.background: {color0}
-*.foreground: {color9}
+*.background: {background}
+*.foreground: {foreground}
 *.cursorColor: {color6}
 *.color0: {color0}
 *.color1: {color1}

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-theme="$HOME/.config/wal/colorschemes/dark/base16-nord.json"
+theme="$HOME/.config/wal/colorschemes/dark/demi-girl.json"
+#theme="$HOME/.config/wal/colorschemes/dark/base16-nord.json"
 
 if [ -z "$1" ]; then
 	bg="$HOME/.local/share/bg.png"
@@ -9,7 +10,8 @@ else
 fi
 wal -c
 wal -n --iterative --theme "$theme" -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
-feh --force-aliasing --bg-fill --no-fehbg "$bg"
+#feh --force-aliasing --bg-fill --no-fehbg "$bg"
+feh  --bg-fill --no-fehbg "$bg"
 cp -f "$bg" $HOME/.local/share/bg.png
 # wal -n --saturate 0.3 -i "$bg" -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
 

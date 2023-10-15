@@ -89,7 +89,8 @@ handle_extension() {
             exit 1;;
 
         md)
-            mdcat "${FILE_PATH}" && exit 5
+            # mdcat "${FILE_PATH}" && exit 5
+            glow -s dark "${FILE_PATH}" && exit 5
             exit 1;;
         ## XLSX
         xlsx)

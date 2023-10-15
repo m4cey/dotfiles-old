@@ -8,6 +8,7 @@ ln -sf    "${HOME}/.cache/wal/dunstrc"    "${HOME}/.config/dunst/dunstrc"
 ln -sf    "${HOME}/.cache/wal/zathurarc"    "${HOME}/.config/zathura/zathurarc"
 ln -sf    "${HOME}/.cache/wal/discord.scss"    "${HOME}/src/tty1/powercord/src/Powercord/themes/Comfy-git-clone/_custom.scss"
 cp -uf     "${HOME}/.cache/wal/wal.vim"    "${HOME}/.config/nvim/autoload/lightline/colorscheme/wal.vim"
+cp -uf     "${HOME}/.cache/wal/cava"    "${HOME}/.config/cava/config"
 sed '/SHADER_COLORS/e cat $HOME/.cache/wal/shader' $HOME/.local/share/shader.og > $HOME/.local/share/shader.frag
 rm -rf "${HOME}/docs/brave-pywal/Cached Theme.pak"
 ln -sf    "${HOME}/.cache/wal/brave.json"    "${HOME}/docs/brave-pywal/manifest.json"

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-w=40
+w=27
+inc=3
 
 refresh() {
 	pkill -RTMIN+14 "${STATUSBAR:-dwmblocks}"
@@ -14,12 +15,36 @@ next() {
 	exit
 }
 
+coverpath() {
+	filename=$(playerctl metadata xesam:Url)
+	path="${filename%/*}"
+	echo $(find "$path" -name "cover.*")
+}
+
+getmetadata() {
+	metadata=$(playerctl metadata --format '{{markup_escape(artist)}}' 2> /dev/null)
+	if [[ -z "$metadata" ]]; then
+		metadata=$(playerctl metadata --format '{{markup_escape(title)}}' 2> /dev/null)
+	else
+		metadata+=$(playerctl metadata --format ' - {{markup_escape(title)}}' 2> /dev/null)
+	fi
+	[[ -z "$metadata" ]] && exit;
+	echo $metadata | tr "^" - | sed -e "s/&apos;/\'/g"
+}
+
+search() {
+	metadata=$(getmetadata)
+	xdg-open "https://www.youtube.com/results?search_query=${metadata}"
+}
+
 case $BLOCK_BUTTON in
 	1) next ;;
+	2) search ;;
 	3) playerctl play-pause ;;
 esac
 
 [[ ! -f /tmp/mprisi ]] && echo "1" > /tmp/mprisi
+[[ ! -f /tmp/mprisa ]] && echo "null" > /tmp/mprisa
 
 player=$(playerctl -l 2> /dev/null | head -1)
 if [ -n "$player" ]; then
@@ -30,25 +55,25 @@ if [ -n "$player" ]; then
 		Stopped) next ;;
 		*) exit ;;
 	esac
-	metadata=$(playerctl metadata --format '{{markup_escape(artist)}}' 2> /dev/null)
-	if [[ -z "$metadata" ]]; then
-		metadata=$(playerctl metadata --format '{{markup_escape(title)}}' 2> /dev/null)
-	else
-		metadata+=$(playerctl metadata --format ' - {{markup_escape(title)}}' 2> /dev/null)
+	curalbum=$(playerctl metadata --format "{{artist}} - {{album}}")
+	if [[ "$(cat /tmp/mprisa)" != "$curalbum" ]]; then
+		cp -f "$(coverpath)" $HOME/.cache/albumart
+		echo "$curalbum" > /tmp/mprisa
 	fi
+	metadata=$(getmetadata)
 	[[ -z "$metadata" ]] && exit;
-	len=$(echo "$metadata" | wc -m)
+	len=$(echo "$metadata" | wc -L)
 	if [ $w -ge $len ]; then
 		printf "^C$c^ $metadata"
 		exit
 	fi
 	i=$(cat /tmp/mprisi)
-	i=$(($i + 1))
+	i=$(($i + $inc))
 	j=$(($i + $w))
 	len2=$(($len + 3))
 	if [ $i -ge $len2 ]; then
 		i=1
-		j=$(($w + 1))
+		j=$(($w + $inc))
 	fi
 	if [ $j -ge $len ]; then
 		out=$(echo "$metadata * $metadata" | cut -c $i-$j)

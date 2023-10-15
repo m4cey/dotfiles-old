@@ -19,6 +19,12 @@ alias \
 	spotify="spicetify apply"\
 	Xephyr="Xephyr :1 -resizeable"\
 	dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"\
+	proton="${STEAM_APP_DIR}/Proton - Experimental/proton"\
+	bandcamp-dl="bandcamp-dl --base-dir=$HOME/media/music_download/"\
+	scdl="scdl --original-art"\
+	yt-playlist="yt-dlp --add-metadata --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --yes-playlist --output '$HOME/media/music_download/%(playlist)s/%(title)s.%(ext)s'"\
+	yt-single="yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output '$HOME/media/music_download/title)s.%(ext)s'"\
+	yt-chapters="yt-dlp --add-metadata --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --split-chapters --output 'chapter:$HOME/media/music_download/%(title)s/%(section_title)s.%(ext)s'"\
 
 # Colorize commands when possible.
 alias \
