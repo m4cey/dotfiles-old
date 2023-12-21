@@ -1,0 +1,51 @@
+#! /bin/bash
+
+flag='*3'
+number=555
+
+# send sms
+# read sms
+# ussd
+
+modem=$(mmcli -L | sed -E "1s/.*Modem\///g; s/[[:space:]].*//")
+
+recharge(){
+	code="$(dmenu -p "Recharge code" <&- )$flag"
+	echo $code
+	if (( $(echo -n $code | wc -m) != 16 )); then notify-send "Bad recharge code"; return; fi
+	mmcli -m $modem --messaging-create-sms "number=${number},text=${code}" --output-keyvalue | sed -E "s/.*SMS\///" > /tmp/sms
+	cat /tmp/sms
+	result=$(mmcli -s "$(< /tmp/sms)" --send)
+	if [[ "$result" =~ "error" ]]; then notify-send "mmcli" "$result"; return; fi
+	notify-send "$result"
+}
+
+read_sms(){
+	result=$(mmcli -m $modem --messaging-list-sms |& sed -E "s/.*SMS\///g")
+	if [[ "$result" =~ "error" ]]; then notify-send "mmcli" "$result"; return; fi
+	filtered=$(printf "$result" | sed -n -E "/received/s/ \(.*\)//p")
+	list=""
+	for sms in $(printf "$filtered" | tr "\n" " "); do
+		content=$(mmcli -s $sms)
+		sender=$(printf "$content" | sed -n -E "/number: /s/.*: //p")
+		date=$(printf "$content" | sed -n -E "/timestamp: /s/.*: //p")
+		list+="$sms $sender `date '+%D' -d $date`\n"
+	done
+	sms=$(printf "exit\n$list" | dmenu -l 20 -p "Select an SMS" | sed "s/[[:space:]].*//")
+	if [[ $sms == "exit" ]]; then return; fi
+	content=$(mmcli -s $sms)
+	text=$(printf "$content" | sed -n -E "/text: /s/.*: //p")
+	sender=$(printf "$content" | sed -n -E "/number: /s/.*: //p")
+	notify-send -t 0 "From: $sender ($sms)" "$text"
+	read_sms
+}
+
+refresh_sms(){
+	mmcli -m $modem -d
+	mmcli -m $modem -e
+}
+
+case "$(printf "*3 Recharge\nRead SMS" | dmenu -l 2 -i -r -p "mmcli")" in
+	"*3 Recharge") recharge;;
+	"Read SMS") read_sms;;
+esac

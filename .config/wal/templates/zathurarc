@@ -9,11 +9,10 @@ map D toggle_page_mode
 map r reload
 map R rotate
 map K zoom in
-map J zoom out
+map J zoom oet
 map i recolor
 map p print
-
-set default-bg                     "{background}"
+set default-bg                     "rgba({background.rgb},ALPHA)"
 set default-fg                     "{foreground}"
 set statusbar-bg                   "{color5}"
 set statusbar-fg                   "{background}"
@@ -31,5 +30,8 @@ set completion-bg                  "{color3}"
 set completion-fg                  "{background}"
 set completion-highlight-bg        "{color3}"
 set completion-highlight-fg        "{foreground}"
-set recolor-lightcolor             "{background}"
+set recolor-lightcolor             "rgba({background.rgb},0)"
 set recolor-darkcolor              "{foreground}"
+
+set recolor
+set guioptions ""

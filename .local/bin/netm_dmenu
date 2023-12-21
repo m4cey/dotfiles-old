@@ -185,7 +185,6 @@ def create_other_actions(client):
         actions.append(Action("{} Bluetooth".format(bluetooth_action),
                               toggle_bluetooth, not bluetooth_enabled))
     actions += [Action("Launch Bluetooth Manager", launch_bluetooth_manager)]
-    actions += [Action("Launch Modem Manager", launch_modem_manager)]
     actions += [Action("Launch Connection Manager", launch_connection_editor),
                 Action("Delete a Connection", delete_connection)]
     if wifi_enabled:
@@ -493,7 +492,7 @@ def create_wwan_actions(client):
     """
     wwan_enabled = client.wwan_get_enabled()
     wwan_action = "Disable" if wwan_enabled else "Enable"
-    return [Action("{} WWAN".format(wwan_action), toggle_wwan, not wwan_enabled)]
+    return [Action("{} WWAN".format(wwan_action), toggle_wwan, not wwan_enabled), Action("mmcli utils", launch_mmcli_utils)]
 
 
 def combine_actions(eths, aps, vpns, wgs, gsms, blues, wwan, others, saved):
@@ -634,6 +633,11 @@ def toggle_bluetooth(enable):
     else:
         notify("Bluetooth {}".format("enabled" if enable else "disabled"))
 
+def launch_mmcli_utils():
+    try:
+        Popen(["dmenummcli"]).communicate()
+    except:
+        notify("Problem opening dmenummcli", urgency="critical")
 
 def launch_connection_editor():
     """Launch nmtui or the gui nm-connection-editor
@@ -657,12 +661,6 @@ def launch_bluetooth_manager():
         Popen(["blueman-manager"]).communicate()
     except:
         notify("Problem opening blueman-manager", urgency="critical")
-
-def launch_modem_manager():
-    try:
-        Popen(["modem-manager-gui"]).communicate()
-    except:
-        notify("Problem opening blueman-manager-gui", urgency="critical")
 
 def get_passphrase():
     """Get a password

@@ -16,9 +16,10 @@ next() {
 }
 
 coverpath() {
-	filename=$(playerctl metadata xesam:Url)
-	path="${filename%/*}"
-	echo $(find "$path" -name "cover.*")
+	#filename=$(playerctl metadata mpris:Url)
+	#path="${filename%/*}"
+	#echo $(find "$path" -name "cover.*")
+	echo "$(playerctl metadata mpris:artUrl)"
 }
 
 getmetadata() {

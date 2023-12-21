@@ -5,6 +5,7 @@
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
+	woman="man" \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	rm="rm -vI" \
@@ -13,7 +14,9 @@ alias \
 	yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner" \
 	get_cover_art="python -m get_cover_art" \
-	walr="wal -nR > /dev/null 2> /dev/null; wal --preview | tail -3 | head -2" \
+	walter="wal -nR > /dev/null 2> /dev/null; wal --preview | tail -3 | head -2" \
+	fzwal="fzwal; setbg; pkill dwm -HUP" \
+	hyfetch="hyfetch --ascii-file $HOME/src/ascii/arch"\
 	dosage="dosage -b $HOME/media/comics/ --adult"\
 	dce="dotnet $HOME/.local/share/dce/DiscordChatExporter.Cli.dll"\
 	spotify="spicetify apply"\
@@ -33,22 +36,5 @@ alias \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
 
-# These common commands are just too long! Abbreviate them.
 alias \
-	ka="killall" \
-	g="git" \
-	trem="transmission-remote" \
-	YT="youtube-viewer" \
-	sdn="sudo shutdown -h now" \
-	e="$EDITOR" \
-	v="$EDITOR" \
-	xi="sudo xbps-install" \
-	xr="sudo xbps-remove -R" \
-	xq="xbps-query" \
-	z="zathura"
-
-alias \
-	magit="nvim -c MagitOnly" \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
-	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
-	tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf" \

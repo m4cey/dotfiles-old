@@ -1,13 +1,14 @@
-#define myFont JetBrainsMono Nerd Font
+#define JetBrains JetBrainsMono Nerd Font
+#define Gohu GohuFont 14 Nerd Font Mono
+#define FiraCode FiraCode Nerd Font Mono
+#define Lilex Lilex Nerd Font Mono
+#define Mononoki Mononoki Nerd Font Mono
 
-g! Transparency (0-1):
-*.alpha: 1
+#define myFont Gohu:size=10:antialias=false
 
-*.font: myFont:size=10
+*.font: myFont
 
-st.font: 		myFont:size=10:weight=90
-st.fontalt0: 		Noto Color Emoji:pixelsize=13
-st.alpha: 		1
+st.fontalt0: Noto Color Emoji:pixelsize=13
 
 ! special
 *.background: {background}
@@ -31,5 +32,15 @@ st.alpha: 		1
 *.color15: {color15}
 
 dmenu.color0: {color0}
-dmenu.color4: {color6}
-dmenu.color7: {color9}
+dmenu.color4: {color1}
+dmenu.color7: {color2}
+
+g! Transparency (0-1):
+*.alpha: 1
+
+dwm.normbordercolor: {background}
+dwm.selbordercolor: {foreground}
+dwm.normfgcolor: {foreground}
+dwm.normbgcolor: {background}
+dwm.selfgcolor: {background}
+dwm.selbgcolor: {color1}

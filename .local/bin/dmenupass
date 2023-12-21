@@ -4,4 +4,5 @@
 # password prompt if needed.
 
 
-dmenu -z 350 -P -p "$1" <&- && echo 2> /dev/null
+# dmenu -z 350 -P -p "$1" <&- && echo 2> /dev/null
+dmenu -P -p "$1" <&- && echo 2> /dev/null

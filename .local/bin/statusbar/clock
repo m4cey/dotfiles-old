@@ -1,26 +1,9 @@
 #!/bin/bash
 
-gayday=$(cat /tmp/gayday)
-
-[[ ! -f /tmp/gayday ]] && echo "0" > /tmp/gayday
-
-gayday() {
-	if [[ $gayday = "1" ]]; then
-		echo "0" > /tmp/gayday
-	else
-		echo "1" > /tmp/gayday
-	fi
-}
-
 case $BLOCK_BUTTON in
-	1) todo -todo;;
-	2) setsid -f "$TERMINAL" -e calcurse ;;
+	1) notify-send -t 0 "This Month" "$(cal | sed "s/..7m/<b><span color=\"white\">/;s/..27m/<\/span><\/b>/")" ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-if [[ $gayday = "1" ]] && [[ $(date +%m) = "06" ]]; then
-	out="gay day $(date +%d) $(date +%I:%M%p)"
-else
-	out=$(date "+%a, %d/%m %I:%M%p")
-fi
+out=$(date "+%a, %d/%m %I:%M%p")
 printf "^t^ $out "
