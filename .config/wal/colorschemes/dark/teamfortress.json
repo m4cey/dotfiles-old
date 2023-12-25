@@ -2,9 +2,9 @@
   "name": "Team Fortress",
   "author": "m4cey",
   "special": {
-    "background": "#f5e7de",
-    "foreground": "#34302d",
-    "cursor": "#34302d"
+    "background": "#34302d",
+    "foreground": "#f5e7de",
+    "cursor": "#f5e7de"
   },
   "colors": {
     "color0": "#34302d",

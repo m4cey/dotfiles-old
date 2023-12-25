@@ -71,6 +71,7 @@ battery() {
 
 clock() {
 	printf "^b$color1^ $(date '+%a, %d/%m %I:%M%p') "
+	[[ -p /tmp/timer.fifo ]] && printf "^b$color2^ timer %s " $(cat /tmp/timer.fifo)
 }
 
 while true; do
