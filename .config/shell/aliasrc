@@ -5,29 +5,22 @@
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
+	dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"\
 	woman="man" \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	rm="rm -vI" \
 	mkd="mkdir -pv" \
-	yt="youtube-dl --add-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner" \
-	get_cover_art="python -m get_cover_art" \
-	walter="wal -nR > /dev/null 2> /dev/null; wal --preview | tail -3 | head -2" \
-	fzwal="fzwal; setbg; pkill dwm -HUP" \
 	hyfetch="hyfetch --ascii-file $HOME/src/ascii/arch"\
-	dosage="dosage -b $HOME/media/comics/ --adult"\
-	dce="dotnet $HOME/.local/share/dce/DiscordChatExporter.Cli.dll"\
-	spotify="spicetify apply"\
+	walter="wal -nR > /dev/null 2> /dev/null; wal --preview | tail -3 | head -2" \
+	fzwal="fzwal; xdotool key super+shift+r;setbg" \
 	Xephyr="Xephyr :1 -resizeable"\
-	dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"\
-	proton="${STEAM_APP_DIR}/Proton - Experimental/proton"\
-	bandcamp-dl="bandcamp-dl --base-dir=$HOME/media/music_download/"\
-	scdl="scdl --original-art"\
 	yt-playlist="yt-dlp --add-metadata --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --yes-playlist --output '$HOME/media/music_download/%(playlist)s/%(title)s.%(ext)s'"\
 	yt-single="yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output '$HOME/media/music_download/title)s.%(ext)s'"\
 	yt-chapters="yt-dlp --add-metadata --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --split-chapters --output 'chapter:$HOME/media/music_download/%(title)s/%(section_title)s.%(ext)s'"\
+	# yt="youtube-dl --add-metadata -i" \
+	# yta="yt -x -f bestaudio/best" \
 
 # Colorize commands when possible.
 alias \
@@ -35,6 +28,3 @@ alias \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
-
-alias \
-	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \

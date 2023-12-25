@@ -2,8 +2,7 @@
 
 pkill dunst
 dunst &
-# pkill dwmblocks
-# dwmblocks &
+pkill bar.sh
 bar.sh &
 playerctld daemon
 # xinput --set-prop "TPPS/2 IBM TrackPoint" "Coordinate Transformation Matrix" 6 0 0 0 6 0 0 0 1

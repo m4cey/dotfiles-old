@@ -13,7 +13,7 @@ pkg_updates() {
   updates=$({ timeout 20 checkupdates 2>/dev/null || true; } | wc -l) # arch
   # updates=$({ timeout 20 aptitude search '~U' 2>/dev/null || true; } | wc -l)  # apt (ubuntu, debian etc)
 
-	if [ $updates -gt 10 ]; then printf "   ^c$color7^ $updates"" update(s)"; fi
+	if [ $updates -gt 50 ]; then printf "   ^c$color7^ $updates"" update(s)"; fi
 }
 
 volume() {

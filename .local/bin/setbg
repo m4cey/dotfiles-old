@@ -10,7 +10,7 @@ else
 fi
 #wal -c
 #wal -n --iterative --theme "$theme" -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
-wal -e -n -R -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
+command wal -e -n -R -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
 # feh --force-aliasing --bg-fill --no-fehbg "$bg"
 feh  --bg-fill --no-fehbg "$bg"
 cp -f "$bg" $HOME/.local/share/bg.png 2> /dev/null

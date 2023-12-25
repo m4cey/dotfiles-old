@@ -1,11 +1,10 @@
-#!/bin/sh
+e!/bin/sh
 
 # A dmenu wrapper script for system functions.
 
 cmds="\
  lock	slock
 ﴚ leave dwm	pkill -TERM dwm
- renew dwm	pkill -HUP dwm
 鈴 sleep	sudo pm-suspend
 ⏾ hibernate	sudo pm-hibernate
  reboot	sudo reboot

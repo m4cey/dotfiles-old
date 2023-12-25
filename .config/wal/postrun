@@ -1,36 +1,36 @@
 #!/bin/bash
+$(xdotool key super+shift+r)
+templates="${HOME}/.config/wal/templates"
 
 source "${HOME}/.cache/wal/colors.sh"
 
-# mkdir -p  "${HOME}/.config/dunst"
-# mkdir -p  "${HOME}/.config/zathura"
 ln -sf    "${HOME}/.cache/wal/xresources"    "${HOME}/.config/x11/xresources"
+ln -sf    "${templates}/xresources"    "${HOME}/.config/x11/xresources_template"
 xrdb "${HOME}/.config/x11/xresources"
 
+alpha=$(xrdb -query | grep "alpha" | cut -f 2) #ALPHA
+font="$(xrdb -query | grep "font" | cut -f 2)" #FONT
+font="${font%%:*}"
+
+#vconsole
 sudo cp   "${HOME}/.cache/wal/vconsole.conf"    "/etc/vconsole.conf"
+#dunst
 ln -sf    "${HOME}/.cache/wal/dunstrc"    "${HOME}/.config/dunst/dunstrc"
-alpha=$(xrdb -query | grep "alpha" | cut -f 2)
+ln -sf    "${templates}/dunstrc"    "${HOME}/.config/dunst/dunstrc_template"
+#zathura
 sed -i -E "s/ALPHA/${alpha}/" "${HOME}/.cache/wal/zathurarc"
 ln -sf    "${HOME}/.cache/wal/zathurarc"    "${HOME}/.config/zathura/zathurarc"
-cp -uf     "${HOME}/.cache/wal/cava"    "${HOME}/.config/cava/config"
+ln -sf    "${templates}/zathurarc"    "${HOME}/.config/zathura/zathurarc_template"
+#sioyek
+sed -i -E "s/FONT/${font}/" "${HOME}/.cache/wal/prefs_user.config"
+ln -sf    "${HOME}/.cache/wal/prefs_user.config"    "${HOME}/.config/sioyek/prefs_user.config"
+ln -sf    "${templates}/prefs_user.config"    "${HOME}/.config/sioyek/prefs_user_template.config"
+#picom
 ln -sf    "${HOME}/.cache/wal/picom.conf"    "${HOME}/.config/picom.conf"
+ln -sf    "${templates}/picom.conf"    "${HOME}/.config/picom_template.conf"
+#nvim
 ln -sf    "${HOME}/.cache/wal/color_overrides.lua"    "${HOME}/.config/nvim/lua/color_overrides.lua"
-# fix_sequences() {
-#         e=$'\e'
-#         sequences=$(cat)
-#         foreground_color="$(echo -e "${sequences}\c" | grep --color=never -Eo "${e}]10[^${e}\\\\]*?${e}\\\\" | grep --color=never -Eo "#[0-9A-Fa-f]{6}")"
-#         background_color="$(echo -e "${sequences}\c" | grep --color=never -Eo "${e}]11[^${e}\\\\]*?${e}\\\\" | grep --color=never -Eo "#[0-9A-Fa-f]{6}")"
-#         cursor_color="$(echo -e "${sequences}\c" | grep --color=never -Eo "${e}]12[^${e}\\\\]*?${e}\\\\" | grep --color=never -Eo "#[0-9A-Fa-f]{6}")"
-# }
-# for term in /dev/pts/{0..9}*
-# do
-# echo -e "\e]4;256;${cursor_color}\a\c" > "${term}" 2>/dev/null
-# echo -e "\e]4;258;${background_color}\a\c" > "${term}" 2>/dev/null
-# echo -e "\e]4;259;${foreground_color}\a\c" > "${term}" 2>/dev/null
-# done
-# }
-
-# fix_sequences <"${HOME}/.cache/wal/sequences"
+ln -sf    "${templates}/color_overrides.lua"    "${HOME}/.config/nvim/lua/color_overrides_template.lua"
 
 pkill dunst; dunst &
 

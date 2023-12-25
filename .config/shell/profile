@@ -19,7 +19,7 @@ export PATH="$PATH:$DOTNET_ROOT"
 #unsetopt PROMPT_SP
 
 # Default programs:
-export GH_TOKEN="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"
+# export GH_TOKEN="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"
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"

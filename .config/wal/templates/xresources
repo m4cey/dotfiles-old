@@ -37,10 +37,3 @@ dmenu.color7: {color2}
 
 g! Transparency (0-1):
 *.alpha: 1
-
-dwm.normbordercolor: {background}
-dwm.selbordercolor: {foreground}
-dwm.normfgcolor: {foreground}
-dwm.normbgcolor: {background}
-dwm.selfgcolor: {background}
-dwm.selbgcolor: {color1}

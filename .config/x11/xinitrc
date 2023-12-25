@@ -13,4 +13,4 @@ fi
 dbus-launch --exit-with-x11
 eval `ssh-agent`
 xrdb "${HOME}/.config/x11/xresources"
-while type chadwm >/dev/null; do chadwm && continue || break; done
+while type chadwm >/dev/null; do exec dbus-launch --exit-with-session chadwm && continue || break; done

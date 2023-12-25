@@ -1,24 +1,27 @@
 {
-  "name": "",
-  "author": "",
-  "color": [
-    "#34302d",
-    "#f08149",
-    "#ef9849",
-    "#bd3b3b",
-    "#f5ad87",
-    "#768a88",
-    "#5b7a8c",
-    "#c1a18a",
-    "#f5e7de",
-    "#f08149",
-    "#ef9849",
-    "#bd3b3b",
-    "#f5ad87",
-    "#768a88",
-    "#5b7a8c",
-    "#c1a18a"
-  ],
-  "foreground": "#f5e7de",
-  "background": "#34302d"
+  "name": "Team Fortress",
+  "author": "m4cey",
+  "special": {
+    "background": "#f5e7de",
+    "foreground": "#34302d",
+    "cursor": "#34302d"
+  },
+  "colors": {
+    "color0": "#34302d",
+    "color1": "#bd3b3b",
+    "color2": "#913a1e",
+    "color3": "#ef9849",
+    "color4": "#5b7a8c",
+    "color5": "#f6b98a",
+    "color6": "#f08149",
+    "color7": "#dabdab",
+    "color8": "#6b6a65",
+    "color9": "#bd3b3b",
+    "color10": "#913a1e",
+    "color11": "#ef9849",
+    "color12": "#5b7a8c",
+    "color13": "#f6b98a",
+    "color14": "#f08149",
+    "color15": "#f5e7de"
+  }
 }
