@@ -1,5 +1,4 @@
 #!/bin/bash
-$(xdotool key super+shift+r)
 templates="${HOME}/.config/wal/templates"
 
 source "${HOME}/.cache/wal/colors.sh"
@@ -7,6 +6,7 @@ source "${HOME}/.cache/wal/colors.sh"
 ln -sf    "${HOME}/.cache/wal/xresources"    "${HOME}/.config/x11/xresources"
 ln -sf    "${templates}/xresources"    "${HOME}/.config/x11/xresources_template"
 xrdb "${HOME}/.config/x11/xresources"
+$(xdotool key super+shift+r) #refresh dwm xresources
 
 alpha=$(xrdb -query | grep "alpha" | cut -f 2) #ALPHA
 font="$(xrdb -query | grep "font" | cut -f 2)" #FONT
@@ -26,8 +26,8 @@ sed -i -E "s/FONT/${font}/" "${HOME}/.cache/wal/prefs_user.config"
 ln -sf    "${HOME}/.cache/wal/prefs_user.config"    "${HOME}/.config/sioyek/prefs_user.config"
 ln -sf    "${templates}/prefs_user.config"    "${HOME}/.config/sioyek/prefs_user_template.config"
 #picom
-ln -sf    "${HOME}/.cache/wal/picom.conf"    "${HOME}/.config/picom.conf"
-ln -sf    "${templates}/picom.conf"    "${HOME}/.config/picom_template.conf"
+ln -sf    "${HOME}/.cache/wal/picom.conf"    "${HOME}/.config/picom/picom.conf"
+ln -sf    "${templates}/picom.conf"    "${HOME}/.config/picom/picom_template.conf"
 #nvim
 ln -sf    "${HOME}/.cache/wal/color_overrides.lua"    "${HOME}/.config/nvim/lua/color_overrides.lua"
 ln -sf    "${templates}/color_overrides.lua"    "${HOME}/.config/nvim/lua/color_overrides_template.lua"

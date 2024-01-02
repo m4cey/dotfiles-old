@@ -1,5 +1,6 @@
 #! /bin/zsh
 
+remaps
 pkill dunst
 dunst &
 pkill bar.sh

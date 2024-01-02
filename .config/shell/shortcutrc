@@ -18,3 +18,5 @@ cfwm="cd /home/mace/src/misc/chadwm; $EDITOR config.def.h" \
 cfs="$EDITOR /home/mace/.config/shell/shortcutrc" \
 cfstart="$EDITOR /home/mace/.local/share/dwm/autostart.sh" \
 cfbar="$EDITOR /home/mace/.local/bin/bar.sh" \
+cfwal="$EDITOR /home/mace/.config/wal/postrun" \
+cfdot="$EDITOR /home/mace/.local/bin/dotfiles-add" \
