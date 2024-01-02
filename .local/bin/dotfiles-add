@@ -8,6 +8,7 @@ add "$HOME/.config/shell/*"
 add "$HOME/.config/zsh/.zshrc"
 
 add "$HOME/.ssh/config"
+add "$HOME/.gitconfig"
 
 add "$HOME/.local/bin/bar.sh"
 add "$HOME/.local/bin/sysact"

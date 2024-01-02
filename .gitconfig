@@ -1,0 +1,27 @@
+[user]
+	name = m4cey
+	email = h4mmer7ime@gmail.com
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[diff]
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+	difftool = true
+[alias]
+	dft = difftool
+	log = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
