@@ -5,6 +5,9 @@ add "$HOME/.local/bin/dotfiles-add"
 
 add "$HOME/.zprofile"
 add "$HOME/.config/shell/*"
+add "$HOME/.config/zsh/.zshrc"
+
+add "$HOME/.ssh/config"
 
 add "$HOME/.local/bin/bar.sh"
 add "$HOME/.local/bin/sysact"
@@ -18,6 +21,10 @@ add "$HOME/.local/bin/dmenu*"
 
 add "$HOME/.config/wal/*"
 add "$HOME/.config/ranger/*"
+add "$HOME/.config/sioyek/keys_user.config"
+add "$HOME/.config/mps-youtube/config.json"
+add "$HOME/.config/btop/btop.conf"
+add "$HOME/.config/kritarc"
 
 add "$HOME/.xinitrc"
 add "$HOME/.config/x11/xinitrc"
