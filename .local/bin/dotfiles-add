@@ -2,6 +2,7 @@
 
 alias add="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add --no-warn-embedded-repo"
 add "$HOME/.local/bin/dotfiles-add"
+add "$HOME/README.md"
 
 add "$HOME/.zprofile"
 add "$HOME/.config/shell/*"

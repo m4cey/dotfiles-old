@@ -18,7 +18,7 @@ sudo cp   "${HOME}/.cache/wal/vconsole.conf"    "/etc/vconsole.conf"
 ln -sf    "${HOME}/.cache/wal/dunstrc"    "${HOME}/.config/dunst/dunstrc"
 ln -sf    "${templates}/dunstrc"    "${HOME}/.config/dunst/dunstrc_template"
 #zathura
-sed -i -E "s/ALPHA/${alpha}/" "${HOME}/.cache/wal/zathurarc"
+sed -i -E "s/ALPHA/${alpha}/g" "${HOME}/.cache/wal/zathurarc"
 ln -sf    "${HOME}/.cache/wal/zathurarc"    "${HOME}/.config/zathura/zathurarc"
 ln -sf    "${templates}/zathurarc"    "${HOME}/.config/zathura/zathurarc_template"
 #sioyek

@@ -25,10 +25,13 @@ HISTFILE=~/.cache/zsh/history
 
 # Basic auto/tab complete:
 autoload -U compinit
+# ignore non text files with text editor
+zstyle ':completion:*:*:nvim:*:*' file-patterns '^*.(|pdf):source-files' '*:all-files'
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
+
 
 # vi mode
 bindkey -v

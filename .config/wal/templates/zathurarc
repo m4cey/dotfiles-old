@@ -30,8 +30,10 @@ set completion-bg                  "{color3}"
 set completion-fg                  "{background}"
 set completion-highlight-bg        "{color3}"
 set completion-highlight-fg        "{foreground}"
-set recolor-lightcolor             "rgba({background.rgb},0)"
+set recolor-lightcolor             "{background}"
 set recolor-darkcolor              "{foreground}"
 
+set recolor-keephue
+set recolor-reverse-video
 set recolor
 set guioptions ""

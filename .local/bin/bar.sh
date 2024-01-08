@@ -61,7 +61,7 @@ mpris() {
 			s/&amp;/\&/g"\
 		)
 		offset=${metadata:$length}
-		printf "^c$foreground^%.*s%s" $length "$metadata" ${offset:+"..."} # if offset is not null, print delimiters
+		printf " ^c$foreground^%.*s%s" $length "$metadata" ${offset:+"..."} # if offset is not null, print delimiters
 	fi
 }
 
