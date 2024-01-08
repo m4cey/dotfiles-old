@@ -111,5 +111,3 @@ whichTTY=$(tty | sed -e "s:/dev/::")
 
 # Switch escape and caps if tty and no passwd required:
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
-# remaps 		# run the remaps script, switching caps/esc and more; check it for more info
-#. "/home/mace/.local/share/cargo/env"

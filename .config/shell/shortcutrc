@@ -1,14 +1,14 @@
 # vim: filetype=sh
 alias \
-cf="cd /home/mace/.config && ls -a" \
-cfx="$EDITOR /home/mace/.config/x11/xresources_template" \
-cfv="cd /home/mace/.config/nvim; $EDITOR init.lua; cd -" \
-cfz="$EDITOR /home/mace/.config/zsh/.zshrc" \
-cfa="$EDITOR /home/mace/.config/shell/aliasrc" \
-cfp="$EDITOR /home/mace/.config/shell/profile" \
-cfwm="cd /home/mace/src/misc/chadwm; $EDITOR config.def.h; cd -" \
-cfs="$EDITOR /home/mace/.config/shell/shortcutrc" \
-cfstart="$EDITOR /home/mace/.local/share/dwm/autostart.sh" \
-cfbar="$EDITOR /home/mace/.local/bin/bar.sh" \
-cfwal="$EDITOR /home/mace/.config/wal/postrun" \
-cfdot="$EDITOR /home/mace/.local/bin/dotfiles-add" \
+cf="cd $HOME/.config && ls -a" \
+cfx="$EDITOR $HOME/.config/x11/xresources_template" \
+cfv="cd $HOME/.config/nvim; $EDITOR init.lua; cd -" \
+cfz="$EDITOR $HOME/.config/zsh/.zshrc" \
+cfa="$EDITOR $HOME/.config/shell/aliasrc" \
+cfp="$EDITOR $HOME/.config/shell/profile" \
+cfwm="cd $HOME/src/misc/chadwm; $EDITOR config.def.h; cd -" \
+cfs="$EDITOR $HOME/.config/shell/shortcutrc" \
+cfstart="$EDITOR $HOME/.local/share/dwm/autostart.sh" \
+cfbar="$EDITOR $HOME/.local/bin/bar.sh" \
+cfwal="$EDITOR $HOME/.config/wal/postrun" \
+cfdot="$EDITOR $HOME/.local/bin/dotfiles-add" \
