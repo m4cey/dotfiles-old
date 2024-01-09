@@ -11,4 +11,4 @@ cfs="$EDITOR $HOME/.config/shell/shortcutrc" \
 cfstart="$EDITOR $HOME/.local/share/dwm/autostart.sh" \
 cfbar="$EDITOR $HOME/.local/bin/bar.sh" \
 cfwal="$EDITOR $HOME/.config/wal/postrun" \
-cfdot="$EDITOR $HOME/.local/bin/dotfiles-add" \
+cfdots="$EDITOR $HOME/.local/bin/dotfiles-add" \

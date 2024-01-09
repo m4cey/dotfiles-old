@@ -1,0 +1,21 @@
+[submodule "/home/mace/src/env/chadwm"]
+	path = /home/mace/src/env/chadwm
+	url = https://github.com/m4cey/chadwm
+[submodule "/home/mace/src/env/dmenu"]
+	path = /home/mace/src/env/dmenu
+	url = https://github.com/m4cey/dmenu
+[submodule "/home/mace/src/env/st"]
+	path = /home/mace/src/env/st
+	url = https://github.com/m4cey/st
+[submodule "src/env/chadwm"]
+	path = src/env/chadwm
+	url = https://github.com/m4cey/chadwm
+[submodule "src/env/st"]
+	path = src/env/st
+	url = https://github.com/m4cey/st
+[submodule "src/env/dmenu"]
+	path = src/env/dmenu
+	url = https://github.com/m4cey/dmenu
+[submodule "src/env/slock"]
+	path = src/env/slock
+	url = https://github.com/m4cey/slock

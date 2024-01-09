@@ -1,6 +1,8 @@
 #!/bin/zsh
 
-alias add="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add --no-warn-embedded-repo"
+alias git="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias add="git add --no-warn-embedded-repo"
+
 add "$HOME/.local/bin/dotfiles-add"
 add "$HOME/README.md"
 
@@ -31,3 +33,5 @@ add "$HOME/.config/kritarc"
 add "$HOME/.xinitrc"
 add "$HOME/.config/x11/xinitrc"
 add "$HOME/.local/share/dwm/*.sh"
+
+add "$HOME/src/env/Makefile"
