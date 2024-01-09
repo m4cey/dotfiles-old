@@ -1,6 +1,7 @@
 # Install script
 ```bash
 curl -s https://raw.githubusercontent.com/m4cey/dotfiles/main/src/env/install.sh | bash
+startx
 ```
 # Manual Installation
 ```bash
