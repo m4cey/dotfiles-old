@@ -1,4 +1,8 @@
-# Installation
+# Install script
+```bash
+curl -s https://raw.githubusercontent.com/m4cey/dotfiles/main/src/env/install.sh | bash
+```
+# Manual Installation
 ```bash
 git clone --bare https://github.com/m4cey/dotfiles .dotfiles
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'

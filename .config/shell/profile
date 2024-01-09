@@ -9,7 +9,6 @@
 export PATH="$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':'):$PATH"
 # Adds `~/.local/share/bin` to $PATH
 export PATH="$(du "$HOME/.local/share/bin" | cut -f2 | paste -sd ':'):$PATH"
-export PATH="$PATH:$(go env GOPATH)/bin"
 
 export TERM=xterm-256color
 
@@ -51,6 +50,6 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias fzwal="fzwal; xdotool key super+shift+r;setbg"
 
 # Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.config}shell/ttymaps.kmap 2>/dev/null
+sudo -n loadkeys $XDG_DATA_HOME/shell/ttymaps.kmap 2>/dev/null
 # source your own profile or add to this file
 [ -f $XDG_CONFIG_HOME/shell/myprofile ] && source "$XDG_CONFIG_HOME/shell/myprofile"
