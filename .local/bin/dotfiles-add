@@ -36,3 +36,4 @@ add "$HOME/.config/x11/xinitrc"
 add "$HOME/.local/share/dwm/*.sh"
 
 add "$HOME/src/env/Makefile"
+add "$HOME/src/env/install.sh"
