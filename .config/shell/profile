@@ -6,7 +6,7 @@
 # to clean up.
 
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin/"
+export PATH="$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin/:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
 export DOTNET_ROOT="$HOME/.local/share/dotnet"
 
