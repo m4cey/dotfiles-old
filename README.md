@@ -23,11 +23,12 @@ cd $HOME/src/env; make install PREFIX=/.local/share MANPREFIX=/.local/share/man 
 Other (optional but recommended for oftb experience) dependencies include:
 - playerctl
 - xbacklight
-- btop
-- ranger
 - xorg-setxkbmap
 - xorg-xset
 - xorg-xmodmap
+- ranger
+- btop
+- fzwal
 
 # IMPORTANT:
 change the font in `~/.config/x11/xresources_template` to a valid font on your system.
