@@ -23,6 +23,7 @@ Or for a local install:
 cd $HOME/src/env; make install PREFIX=/.local/share MANPREFIX=/.local/share/man DESTDIR=~
 ```
 **Finally install [pywal](https://github.com/dylanaraps/pywal) with your preferred method.**
+and run `wal --theme "gruvbox" -o $HOME/.config/wal/postrun` to initialize configuration files
 
 Other (optional but recommended for oftb experience) dependencies include:
 - playerctl
