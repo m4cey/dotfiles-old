@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # profile file. Runs on login. Environmental variables are set here.
 
@@ -45,9 +45,6 @@ export LC_TELEPHONE="en_US.UTF-8"
 export LC_MEASUREMENT="en_US.UTF-8"
 export LC_IDENTIFICATION="en_US.UTF-8"
 export LC_ALL=
-
-[ -f $XDG_CONFIG_HOME/shell/shortcutrc ] && $XDG_CONFIG_HOME/shell/shortcutrc >/dev/null 2>&1 &
-[ -f $XDG_CONFIG_HOME/shell/aliasrc ] && $XDG_CONFIG_HOME/shell/aliasrc >/dev/null 2>&1 &
 
 # Some aliases
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"\

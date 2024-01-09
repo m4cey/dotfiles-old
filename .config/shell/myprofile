@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Default programs:
+export EDITOR="nvim"
+export TERMINAL="st"
+export BROWSER="firefox"
+export MANPAGER='nvim +Man!'
+export GIT_EXTERNAL_DIFF=difft
+export TERM=xterm-256color
+export DESKTOP_SESSION="dwm"
+
+export XDG_MUSIC_DIR="$HOME/media/music"
+export LESSHISTFILE="-"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/mywine"
+export WINEARCH=win32
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
+export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.cache/zsh}/history"
+export PATH="$PATH:$(go env GOPATH)/bin"
+export DOTNET_ROOT="$HOME/.local/share/dotnet"
+export PATH="$PATH:$DOTNET_ROOT"
+
+SAVEHIST=100
+
+
+# Other program settings:
+export SOURCES="$HOME/src/"
+export STEAM_APP_DIR="$HOME/.steam/steam/steamapps/common/"
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+export LIBVA_DRIVER_NAME=i965
+
+[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && shortcuts >/dev/null 2>&1 &
+[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc ] && aliasrc >/dev/null 2>&1 &
