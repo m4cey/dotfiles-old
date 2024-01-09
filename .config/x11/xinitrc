@@ -2,15 +2,10 @@
 
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
 	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
-else
+elif [ -f "$HOME/.xprofile" ]; then
 	. "$HOME/.xprofile"
 fi
 
-#exec dbus-launch --exit-with-session dwm_debug
-# exec ssh-agent dbus-run-session dwm_debug
-# exec dwm_debug
-
-dbus-launch --exit-with-x11
-eval `ssh-agent`
 xrdb "${HOME}/.config/x11/xresources"
-while type chadwm >/dev/null; do exec dbus-launch --exit-with-session chadwm && continue || break; done
+eval `ssh-agent`
+exec dbus-launch --exit-with-session chadwm

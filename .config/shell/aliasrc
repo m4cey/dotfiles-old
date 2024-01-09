@@ -1,11 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 # Use neovim for vim if present.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
-	dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"\
 	woman="man" \
 	cp="cp -iv" \
 	mv="mv -iv" \
