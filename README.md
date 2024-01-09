@@ -38,4 +38,4 @@ change the font in `~/.config/x11/xresources_template` to a valid font on your s
 * Set the wallpaper with `setbg image.jpg`
 * Change the colorscheme with `fzwal`
 * Copy new fonts to `~/.local/share/fonts` and then run `fc-cache -f` or install them with your package manager.
-* [pywal](https://github.com/dylanaraps/pywal) takes care of generating config files for all programs that accept a colorscheme. Each config files comes with a `_template` version that you should modify instead of the normal one. these get turned into usuable config files by pywal and placed in their proper place. just run `setbg` after modifying templates to apply them. Look at `~/.config/wal/postrun` for details.
+* [pywal](https://github.com/dylanaraps/pywal) takes care of generating config files for all programs that accept a colorscheme. Each config files comes with a `_template` version that you should modify instead of the normal one. these get passed to pywal and the output is placed in the proper place. just run `setbg` after modifying templates to apply them. Look at `~/.config/wal/postrun` for details.
