@@ -47,8 +47,8 @@ export LC_IDENTIFICATION="en_US.UTF-8"
 export LC_ALL=
 
 # Some aliases
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"\
-fzwal="fzwal; xdotool key super+shift+r;setbg" \
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias fzwal="fzwal; xdotool key super+shift+r;setbg"
 
 # Switch escape and caps if tty and no passwd required:
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.config}shell/ttymaps.kmap 2>/dev/null
