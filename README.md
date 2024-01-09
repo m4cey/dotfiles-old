@@ -12,7 +12,7 @@ dotfiles checkout -f
 
 Clone with:
 ```bash
-dotfiles submodule update --init --recursive
+dotfiles submodule update --init
 ```
 Install with:
 ```bash
