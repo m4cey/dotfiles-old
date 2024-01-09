@@ -5,7 +5,7 @@ if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
 elif [ -f "$HOME/.xprofile" ]; then
 	. "$HOME/.xprofile"
 fi
-
-xrdb "${HOME}/.config/x11/xresources"
+source "$HOME/.profile"
+xrdb "$HOME/.config/x11/xresources"
 eval `ssh-agent`
 exec dbus-launch --exit-with-session chadwm
