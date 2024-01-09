@@ -4,29 +4,29 @@ curl -s https://raw.githubusercontent.com/m4cey/dotfiles/main/src/env/install.sh
 startx
 ```
 # Manual Installation
+
+## Setting up the environement
 ```bash
 git clone --bare https://github.com/m4cey/dotfiles .dotfiles
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 dotfiles checkout -f
 ```
-# Setting up the environement
-
-Clone with:
+Clone submodules with:
 ```bash
 dotfiles submodule update --init
 ```
-Install with:
-```bash
-cd $HOME/src/env; sudo make install
-```
-Or for a local install:
+Install them with:
 ```bash
 cd $HOME/src/env; make install PREFIX=/.local/share MANPREFIX=/.local/share/man DESTDIR=~
 ```
-**Finally install [pywal](https://github.com/dylanaraps/pywal) with your preferred method.**
+Or for a global install:
+```bash
+cd $HOME/src/env; sudo make install
+```
+## Finally install [pywal](https://github.com/dylanaraps/pywal) with your preferred method
 and run `wal --theme "gruvbox" -o $HOME/.config/wal/postrun` to initialize configuration files
 
-Other (optional but recommended for oftb experience) dependencies include:
+## Other (optional but recommended for oftb experience) dependencies include:
 - playerctl
 - xbacklight
 - xorg-setxkbmap
