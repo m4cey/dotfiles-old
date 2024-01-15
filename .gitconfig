@@ -25,3 +25,5 @@
 [alias]
 	dft = difftool
 	log = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
+[color]
+	ui = auto

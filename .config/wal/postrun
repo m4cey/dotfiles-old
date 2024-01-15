@@ -1,41 +1,80 @@
-#!/bin/bash
-templates="${HOME}/.config/wal/templates"
+#!/bin/sh
+TEMPLATES="${HOME}/.config/wal/templates"
+CONFIG="${XDG_CONFIG_HOME}"
+CACHE="${XDG_CACHE_HOME}/wal"
+
+#handle bright/dark alternate colors defined
+#in templates with {colordark} OR {colorbright}
+handle_alt_colors() {
+	if [ $is_dark_theme == 1 ]; then
+		sed -i "s/ OR.*/ #darktheme/" "$1"
+	else
+		sed -i "/ OR /s/$/ #lighttheme/; s/\(=\).* OR/\1/" "$1"
+	fi
+}
+
+# $1 = config file path relative to XDG_CONFIG_HOME
+# $2 = config file name
+apply_template() {
+	[ $# -lt 2 ] && return 1
+
+	mkdir -p "${CONFIG}/${1}"
+	ln -sf "${CACHE}/${2}" "${CONFIG}/${1}/${2}"
+	[ $# -gt 2 ] && [ $3 != 0 ] && ln -sf "${TEMPLATES}/${2}" "${CONFIG}/${1}/${2}_template"
+}
+
+luma() {
+	printf "%d*0.2126 + %d*0.7152 + %d*0.0722" 0x${1:1:2} 0x${1:3:2} 0x${1:5:2}
+}
 
 source "${HOME}/.cache/wal/colors.sh"
-
-ln -sf    "${HOME}/.cache/wal/xresources"    "${HOME}/.config/x11/xresources"
-ln -sf    "${templates}/xresources"    "${HOME}/.config/x11/xresources_template"
-xrdb "${HOME}/.config/x11/xresources"
-$(xdotool key super+shift+r) #refresh dwm xresources
 
 alpha=$(xrdb -query | grep "alpha" | cut -f 2) #ALPHA
 font="$(xrdb -query | grep "font" | cut -f 2)" #FONT
 font="${font%%:*}"
+bg="$(xrdb -query | grep "background" | cut -f 2)"
+fg="$(xrdb -query | grep "foreground" | cut -f 2)"
+is_dark_theme=$(bc <<< "$(luma $fg) > $(luma $bg)")
+
+if [ $is_dark_theme == 1 ]; then
+	echo "Applying dark theme"
+else
+	echo "Applying light theme"
+fi
+
+#xresources
+apply_template "x11" "xresources"
+xrdb "${CONFIG}/x11/xresources"
+$(xdotool key super+shift+r) #refresh chadwm xresources
 
 #vconsole
 sudo cp   "${HOME}/.cache/wal/vconsole.conf"    "/etc/vconsole.conf"
+
 #dunst
-mkdir -p "${HOME}/.config/dunst"
-ln -sf    "${HOME}/.cache/wal/dunstrc"    "${HOME}/.config/dunst/dunstrc"
-ln -sf    "${templates}/dunstrc"    "${HOME}/.config/dunst/dunstrc_template"
+apply_template "dunst" "dunstrc"
+
 #zathura
-mkdir -p "${HOME}/.config/zathura"
-sed -i -E "s/ALPHA/${alpha}/g" "${HOME}/.cache/wal/zathurarc"
-ln -sf    "${HOME}/.cache/wal/zathurarc"    "${HOME}/.config/zathura/zathurarc"
-ln -sf    "${templates}/zathurarc"    "${HOME}/.config/zathura/zathurarc_template"
+sed -i -E "s/ALPHA/${alpha}/g" "${CACHE}/zathurarc"
+apply_template "zathura" "zathurarc"
+
 #sioyek
-mkdir -p "${HOME}/.config/sioyek"
-sed -i -E "s/FONT/${font}/" "${HOME}/.cache/wal/prefs_user.config"
-ln -sf    "${HOME}/.cache/wal/prefs_user.config"    "${HOME}/.config/sioyek/prefs_user.config"
-ln -sf    "${templates}/prefs_user.config"    "${HOME}/.config/sioyek/prefs_user_template.config"
+sed -i -E "s/FONT/${font}/" "${CACHE}/prefs_user.config"
+apply_template "sioyek" "prefs_user.config"
+
 #picom
-mkdir -p "${HOME}/.config/picom"
-ln -sf    "${HOME}/.cache/wal/picom.conf"    "${HOME}/.config/picom/picom.conf"
-ln -sf    "${templates}/picom.conf"    "${HOME}/.config/picom/picom_template.conf"
+handle_alt_colors "${CACHE}/picom.conf"
+apply_template "picom" "picom.conf"
+
 #nvim
-ln -sf    "${HOME}/.cache/wal/color_overrides.lua"    "${HOME}/.config/nvim/lua/color_overrides.lua"
-ln -sf    "${templates}/color_overrides.lua"    "${HOME}/.config/nvim/lua/color_overrides_template.lua"
+nvim_theme="latte" && [ $is_dark_theme == 1 ] && nvim_theme="mocha"
+sed -i -E "s/THEME/${nvim_theme}/" "${CACHE}/color_overrides.lua"
+apply_template "nvim/lua" "color_overrides.lua"
+
+#my mace-typst colorscheme
+ln -sf "${CACHE}/default.typ" "${HOME}/src/mace/mace-typst/templates/colorschemes/default.typ"
+ln -sf "${CACHE}/default.tmTheme" "${HOME}/src/mace/mace-typst/templates/colorschemes/default.tmTheme"
 
 pkill dunst; dunst &
-
+pkill picom; picom &
+pkill bar.sh; bar.sh &
 pywalfox update

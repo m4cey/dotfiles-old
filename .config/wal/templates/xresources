@@ -3,8 +3,10 @@
 #define FiraCode FiraCode Nerd Font Mono
 #define Lilex Lilex Nerd Font Mono
 #define Mononoki Mononoki Nerd Font Mono
+#define Dina DinaRemasterII
+#define PS2P Press Start 2P
 
-#define myFont Gohu:size=10:antialias=false
+#define myFont Dina:size=12:antialias=false
 
 *.font: myFont
 

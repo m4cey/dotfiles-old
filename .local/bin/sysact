@@ -4,12 +4,12 @@
 
 cmds="\
 lock	slock
-leave dwm	pkill -TERM dwm
+exit x11	pkill -TERM Xorg
 sleep	sudo pm-suspend
 hibernate	sudo pm-hibernate
 reboot	sudo reboot
 poweroff	sudo poweroff"
 
-choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 3 -g 3)" || exit 1
+choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 3 -g 2)" || exit 1
 
 `echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`

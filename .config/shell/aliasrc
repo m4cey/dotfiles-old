@@ -14,6 +14,7 @@ alias \
 	hyfetch="hyfetch --ascii-file $HOME/src/ascii/arch"\
 	walter="wal -nR > /dev/null 2> /dev/null; wal --preview | tail -3 | head -2" \
 	fzwal="fzwal; xdotool key super+shift+r;setbg" \
+	fzwall="command fzwal -l; xdotool key super+shift+r;setbg" \
 	Xephyr="Xephyr :1 -resizeable"\
 	yt-playlist="yt-dlp --add-metadata --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --yes-playlist --output '$HOME/media/music_download/%(playlist)s/%(title)s.%(ext)s'"\
 	yt-single="yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output '$HOME/media/music_download/title)s.%(ext)s'"\

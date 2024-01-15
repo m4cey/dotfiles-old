@@ -4,8 +4,7 @@ if [ -z "$1" ]; then
 	bg="$HOME/.local/share/bg.png"
 else
 	bg="$1"
+	cp -f "$bg" $HOME/.local/share/bg.png # 2> /dev/null
 fi
-
-command wal -e -n -R -o "$HOME/.config/wal/postrun" #> /dev/null 2>&1
-feh  --bg-fill --no-fehbg "$bg"
-cp -f "$bg" $HOME/.local/share/bg.png 2> /dev/null
+command wal -enR -o "$HOME/.config/wal/postrun"
+feh  --force-aliasing --bg-fill --no-fehbg "$bg" 2> /dev/null
