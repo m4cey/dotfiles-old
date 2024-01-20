@@ -12,7 +12,7 @@ alias \
 	mkd="mkdir -pv" \
 	ffmpeg="ffmpeg -hide_banner" \
 	hyfetch="hyfetch --ascii-file $HOME/src/ascii/arch"\
-	walter="wal -nR > /dev/null 2> /dev/null; wal --preview | tail -3 | head -2" \
+	walter="wal -nest --preview | tail -3 | head -2" \
 	fzwal="fzwal; xdotool key super+shift+r;setbg" \
 	fzwall="command fzwal -l; xdotool key super+shift+r;setbg" \
 	Xephyr="Xephyr :1 -resizeable"\

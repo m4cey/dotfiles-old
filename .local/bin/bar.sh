@@ -35,13 +35,14 @@ next() {
 }
 
 getmetadata() {
-	metadata=$(playerctl metadata --format '{{markup_escape(artist)}}' 2> /dev/null)
+	metadata=$(playerctl metadata --format '{{artist}}' 2> /dev/null)
 	if [[ -z "$metadata" ]]; then
-		metadata=$(playerctl metadata --format '{{markup_escape(title)}}' 2> /dev/null)
+		metadata=$(playerctl metadata --format '{{title}}' 2> /dev/null)
 	else
-		metadata+=$(playerctl metadata --format ' - {{markup_escape(title)}}' 2> /dev/null)
+		metadata+=$(playerctl metadata --format ' - {{title}}' 2> /dev/null)
 	fi
-	printf "$metadata" # | tr "^" - | sed -e "s/&apos;/\'/g"
+	printf "$metadata" | sed -E "s/^\"|\"$//g;" # | tr -d '"' # | sed -e "s/&apos;/\'/g"
+
 }
 mpris() {
 	length=60
@@ -54,12 +55,14 @@ mpris() {
 			Stopped) next; exit ;;
 			*) exit ;;
 		esac
-		metadata=$(getmetadata | sed -E\
-			"s/&apos;/\'/g;\
-			s/&quote;/\"/g;\
-			s/“|”/\"/g;\
-			s/&amp;/\&/g"\
-		)
+		# metadata=$(getmetadata | sed -E\
+		# 	"s/&apos;/\'/g;\
+		# 	s/&quote;/\"/g;\
+		#	s/“|”/\"/g;\
+			# "s/^\"|\"$//g;"\
+		#	s/&amp;/\&/g"\
+		# )
+		metadata=$(getmetadata)
 		offset=${metadata:$length}
 		printf " ^c$foreground^%.*s%s" $length "$metadata" ${offset:+"..."} # if offset is not null, print delimiters
 	fi
