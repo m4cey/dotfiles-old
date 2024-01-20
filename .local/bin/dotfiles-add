@@ -9,6 +9,7 @@ add "$HOME/README.md"
 add "$HOME/.profile"
 add "$HOME/.config/shell/*"
 add "$HOME/.config/zsh/.zshrc"
+add "$HOME/.bashrc"
 
 add "$HOME/.ssh/config"
 add "$HOME/.gitconfig"
