@@ -1,0 +1,52 @@
+#!/bin/bash
+
+ALBUM_PATH="${Z_ALBUM_PATH:-"albums/{artist}/{album}/{disc_number}-{album_num}-{song_name}.{ext}"}"
+ARTIST_PATH="${Z_ARTIST_PATH:-$ALBUM_PATH}"
+PLAYLIST_PATH="${Z_PLAYLIST_PATH:-"playlists/{playlist}/{playlist_num}-{artist}-{song_name}.{ext}"}"
+TRACK_PATH="${Z_TRACK_PATH:-"singles/{artist}/{song_name}.{ext}"}"
+
+_USAGE="\
+Usage:
+ $(basename $0) <a[lbum] | ar[tist] | p[laylist] | t[rack]> <search term>\
+"
+_COMMANDS=("album" "artist" "playlist" "track")
+_COMMAND=""
+
+log_exit() {
+	echo "$*"
+	exit
+}
+
+[ $# -lt 1 ] && log_exit "$_USAGE"
+
+for command in "${_COMMANDS[@]}"; do
+	[[ -n "$1" && "$command" =~ ^"$1"+.* ]] || continue
+	_COMMAND="$command"
+	shift
+	break
+done
+
+[ ! -n "$_COMMAND" -o $# -lt 1 ] && log_exit "$_USAGE"
+
+_TARGET=${_COMMAND^^}
+_PATH=${_COMMAND^^}_PATH
+zotify \
+	--output "${!_PATH}" \
+	-s "$*" \
+| awk \
+	-v target="$_TARGET" \
+	-v search_term="$*" \
+	'BEGIN {
+		RS=""
+		FS="|"
+		printf "Searching for: %s (%s)\n", search_term, target
+	}
+	{
+		if (NR < 5) {
+			if ($0~target) {
+				print	$0
+			}
+		} else {
+			print $0
+		}
+	}'

@@ -1,10 +1,17 @@
-#!/bin/zsh
+#!/bin/bash
 
-alias git="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias add="git add --no-warn-embedded-repo"
+dotfiles-git() {
+	/usr/bin/git \
+	--git-dir=$HOME/.dotfiles/ \
+	--work-tree=$HOME \
+	"$@"
+}
+function add() {
+	dotfiles-git add --no-warn-embedded-repo "$@"
+}
 
 add "$HOME/.local/bin/dotfiles-add"
-add "$HOME/README.md"
+add "$HOME/.github/README.md"
 
 add "$HOME/.profile"
 add "$HOME/.config/shell/*"
@@ -38,3 +45,7 @@ add "$HOME/.local/share/dwm/*.sh"
 
 add "$HOME/src/env/Makefile"
 add "$HOME/src/env/install.sh"
+
+add "$HOME/src/scripts/*"
+
+dotfiles-git status -uno

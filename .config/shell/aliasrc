@@ -10,6 +10,7 @@ alias \
 	mv="mv -iv" \
 	rm="rm -vI" \
 	mkd="mkdir -pv" \
+	xclip="xclip -selection clipboard" \
 	ffmpeg="ffmpeg -hide_banner" \
 	hyfetch="hyfetch --ascii-file $HOME/src/ascii/arch"\
 	walter="wal -nest --preview | tail -3 | head -2" \
@@ -32,3 +33,7 @@ alias \
 # Git aliases
 alias \
 	gs="git status"
+
+alias rm="echo BAD! BAD! SHOO!!"
+
+alias vps_token="cat $HOME/misc/vps/access-token | xclip"

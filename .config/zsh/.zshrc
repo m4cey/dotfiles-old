@@ -100,3 +100,4 @@ bindkey '^e' edit-command-line
 #bindkey -M vicmd 'j' history-substring-search-down
 
 # source "$HOME"/.config/broot/launcher/bash/br
+unset zle_bracketed_paste

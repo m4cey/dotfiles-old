@@ -56,3 +56,7 @@ alias fzwal="fzwal; xdotool key super+shift+r;setbg"
 sudo -n loadkeys $XDG_DATA_HOME/shell/ttymaps.kmap 2>/dev/null
 # source your own profile or add to this file
 [ -f $XDG_CONFIG_HOME/shell/myprofile ] && source "$XDG_CONFIG_HOME/shell/myprofile"
+# node version manager
+[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/nvm.sh
+source /usr/share/nvm/install-nvm-exec
